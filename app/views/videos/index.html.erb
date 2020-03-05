@@ -1,0 +1,12 @@
+<div class="row">
+<% @videos.each do |video| %>
+  <div class="col-md-4 col-sm-6 col-12">
+    <div class="card">
+      <%= link_to( image_tag(video["thumbnails"].first["url"], class: "card-img-top"), video_path(video["_id"]) )%>
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= video["title"] %></h5>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
