@@ -48,4 +48,7 @@ The helper exposes two methods: **videos_page** and **video_details** and encaps
 
 The controller and views are really simple, it's just looping/rendering the models returned by the ZypeAPI Helper.
 
+## TODO
+
+* Add spec coverage!!
 
