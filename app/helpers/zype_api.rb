@@ -3,8 +3,8 @@ require 'net/http'
 
 module ZypeApi
 
-  def list_videos
-    perform_request('/videos')['response']
+  def videos_page(page_number = 1)
+    perform_request('/videos', {page: page_number, per_page: 12})
   end
 
   def video_details(video_id)
