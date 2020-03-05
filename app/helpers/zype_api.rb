@@ -8,7 +8,9 @@ module ZypeApi
   end
 
   def video_details(video_id)
-    perform_request("/videos/#{video_id}")['response']
+    perform_request("/videos/#{video_id}")['response'].tap do |video_details|
+      video_details["embeded_player_url"] = embeded_player_url(video_id)
+    end
   end
 
   private
@@ -30,5 +32,9 @@ module ZypeApi
 
   def base_url
     "https://api.zype.com/"
+  end
+
+  def embeded_player_url(id)
+    "https://player.zype.com/embed/#{id}.js?autoplay=true&app_key=#{app_key}"
   end
 end

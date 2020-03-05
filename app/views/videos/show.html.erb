@@ -1,7 +1,8 @@
-<div class="row">
+<h1 class="text-center"><%= @video["title"] %></h1>
+<p class="text-center"><%= link_to("Go back to the list", videos_path()) %></p>
+<div class="row mt-3">
   <div class="col-12">
     <div id='<%= "zype_#{@video["_id"]}" %>'></div>
-    <script src='https://player.zype.com/embed/<%= @video["_id"] %>.js?autoplay=true&a
-    pp_key=<%= Rails.configuration.zype_api_key %>' type="text/javascript"></script>
+    <script src='<%= @video["embeded_player_url"] %>' type="text/javascript"></script>
   </div>
 </div>
