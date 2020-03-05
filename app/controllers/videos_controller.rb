@@ -3,9 +3,7 @@ class VideosController < ApplicationController
   include ZypeApi
 
   def index
-    result = videos_page(page_number)
-    @videos = result['response']
-    @pagination = result['pagination']
+    @data = videos_page(page_number)
   end
 
   def show

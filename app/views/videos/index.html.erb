@@ -1,10 +1,10 @@
 <div class="row">
-<% @videos.each do |video| %>
+<% @data.videos.each do |video| %>
   <div class="col-lg-2 col-md-3 col-sm-4 col-12">
     <div class="card">
-      <%= link_to( image_tag(video["thumbnails"].first["url"], class: "card-img-top"), video_path(video["_id"]) )%>
+      <%= link_to( image_tag(video.thumbnail_url, class: "card-img-top"), video_path(video.xid) )%>
       <div class="card-body">
-        <h5 class="card-title text-center"><%= video["title"] %></h5>
+        <h5 class="card-title text-center"><%= video.title %></h5>
       </div>
     </div>
   </div>
@@ -14,14 +14,14 @@
   <div class="col-lg-4 col-md-6 col-8 offset-lg-5 offset-md-4 offset-2">
     <nav aria-label="Page navigation example">
       <ul class="pagination pagination-lg">
-        <li class='page-item <%= "disabled" unless @pagination["previous"] %>'>
-          <%= link_to("Prev", videos_path(page: @pagination["previous"]), class: "page-link") %>
+        <li class='page-item <%= "disabled" unless @data.pagination.has_previous? %>'>
+          <%= link_to("Prev", videos_path(page: @data.pagination.previous), class: "page-link") %>
         </li>
         <li class="page-item">
-          <a class="page-link"><%= @pagination["current"]%>-<%=@pagination["pages"] %></a>
+          <a class="page-link"><%= @data.pagination.current_page %>-<%=@data.pagination.total %></a>
         </li>
-        <li class='page-item <%= "disabled" unless @pagination["next"] %>'>
-          <%= link_to("Next", videos_path(page: @pagination["next"]), class: "page-link") %>
+        <li class='page-item <%= "disabled" unless @data.pagination.has_next? %>'>
+          <%= link_to("Next", videos_path(page: @data.pagination.next), class: "page-link") %>
         </li>
       </ul>
     </nav>

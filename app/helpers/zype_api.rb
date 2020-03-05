@@ -4,13 +4,21 @@ require 'net/http'
 module ZypeApi
 
   def videos_page(page_number = 1)
-    perform_request('/videos', {page: page_number, per_page: 12})
+    SearchResult.new.tap do |search_result|
+      response = perform_request('/videos', {page: page_number, per_page: 12})
+      
+      search_result.videos = response['response'].map do |video|
+        Video.new(video)
+      end
+
+      search_result.pagination = Pagination.new(response['pagination'])
+    end
   end
 
   def video_details(video_id)
-    perform_request("/videos/#{video_id}")['response'].tap do |video_details|
-      video_details["embeded_player_url"] = embeded_player_url(video_id)
-    end
+    video = perform_request("/videos/#{video_id}")['response']
+    video["embeded_player_url"] = embeded_player_url(video_id)
+    Video.new(video)
   end
 
   private
