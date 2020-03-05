@@ -11,6 +11,9 @@ module GonzoZypeChallenge
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.zype_api_key = ENV.fetch("ZYPE_API_KEY") do
+      raise "Environment variable ZYPE_API_KEY is required to run the application"
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
