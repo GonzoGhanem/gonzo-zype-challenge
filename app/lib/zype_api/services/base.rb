@@ -17,9 +17,11 @@ module ZypeApi
 
           return parsed_response_body if response.code.to_i == 200
 
-          raise Error, parsed_response_body['message']
+          ## Looks like 422 is used instead of 401
+          exception_klass = response.code.to_i == 422 ? Errors::Unauthorized : Errors::BasicError
+          raise exception_klass, parsed_response_body['message']
         rescue JSON::ParserError
-          raise Error, 'Invalid response'
+          raise Errors::BasicError, 'Invalid response'
         end
 
         def app_key

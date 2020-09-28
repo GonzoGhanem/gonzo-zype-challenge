@@ -23,7 +23,7 @@ module ZypeApi
         def customer_entitled_for?(video_id, access_token)
           response = api_request("/videos/#{video_id}/entitled", params: { access_token: access_token })
           response['message'].to_s.upcase == 'ENTITLED'
-        rescue ZypeApi::Services::Error
+        rescue ZypeApi::Services::Errors::Unauthorized
           return false
         end
       end
