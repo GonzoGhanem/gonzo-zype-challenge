@@ -1,0 +1,14 @@
+<div class="row mt-5 mb-5">
+  <div class=" col-12 offset-md-4 col-md-4">
+    <div class="btn-group special" role="group" aria-label="First group">
+      <% base_btn_class = "btn btn-secondary" %>
+      <% back_btn_class = @data.pagination.has_previous? ? base_btn_class : (base_btn_class + ' disabled') %>
+      <%= link_to("<<", videos_path(page: @data.pagination.previous), class: back_btn_class) %>
+      <button type="button" class="btn btn-secondary">
+        Page <%= @data.pagination.current_page %> of <%=@data.pagination.total %>
+      </button>
+      <% next_btn_class = @data.pagination.has_next? ? base_btn_class : (base_btn_class + ' disabled') %>
+      <%= link_to(">>", videos_path(page: @data.pagination.next), class: next_btn_class) %>
+    </div>
+  </div>
+</div>
