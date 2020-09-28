@@ -27,7 +27,9 @@ https://gonzo-zype-challenge.herokuapp.com/
 2. Install Ruby 2.4.4
 3. Install bundler 2.0.X
 4. run `bundle install`
-5. setup environment variable `ZYPE_API_KEY=your_zype_api_key`
+5. setup environment variable `ZYPE_API_APP_KEY=your_app_key`
+5. setup environment variable `ZYPE_API_CLIENT_ID=your_client_id`
+5. setup environment variable `ZYPE_API_CLIENT_SECRET=your_client_secret`
 6. run the application with default settigns `bundle exec rails s`
 
 ## High level architecture overview

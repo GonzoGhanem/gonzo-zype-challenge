@@ -1,8 +1,21 @@
 <h1 class="text-center"><%= @video.title %></h1>
 <p class="text-center"><%= link_to("Go back to the list", videos_path()) %></p>
-<div class="row mt-3">
+<div class="row mt-5">
+  <% if @customer_entitled %>
   <div class="col-12">
     <div id='<%= "zype_#{@video.xid}" %>'></div>
     <script src='<%= @video.embeded_player_url %>' type="text/javascript"></script>
   </div>
+  <% else %>
+  <div class="col-12 col-lg-4 offset-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Subscription is required</h5>
+        <p class="card-text">In order to see this content a premium subscription is required. Please click below to know more about our plans and subscriptions</p>
+        <button type="button" class="btn btn-primary btn-block btn-lg" disabled>Subscribe now!</button>
+        <%= link_to("Or pick a different video", videos_path, class: "btn btn-secondary btn-block btn-sm") %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
